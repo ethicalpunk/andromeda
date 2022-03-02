@@ -29,6 +29,9 @@ Documentation
 ![First run main](https://github.com/ethicalpunk/andromeda/blob/main/docs/first_run_main.png "First run main")
     
     [Clear IP-list]: Clears the current output of IP addresses and starts over again.
+    
     [Open Wireshark]: Open wireshark with the current set parameters. This allows you to futher inspect packets.
+    
     [Wireshark Tutorial]: Redirects you to a link showing you a detailed instructions on how to use Wireshark.
+    
     [Quit]: This button drops all threads and closes the program.
