@@ -4,7 +4,7 @@ A script that sniffs ip packets and filters them according to your input. Origin
 Installation
 ============
 
-::
+
 
     pip install -r requirements.txt
     
