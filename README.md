@@ -3,8 +3,9 @@ A script that sniffs ip packets and filters them according to your input. Origin
 
 Installation
 ============
-
-
-
     pip install -r requirements.txt
     
+
+Documentation
+============
+**1. Before starting up the script, set the variable: wiresharkfolder to your wireshark.exe location. Eg: C:/Program Files/Wireshark/Wireshark.exe**
