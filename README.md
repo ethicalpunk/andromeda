@@ -24,6 +24,11 @@ Documentation
 
 ![First run interface](https://github.com/ethicalpunk/andromeda/blob/main/docs/first_run_interface.png "First run interface")
 
-**4.0 Once the network interface was also given, Andromeda will now run with the given parameters. While Andromeda is running, you will see a small GUI window pop up with the options: __[Clear IP-list, Open Wireshark, Wireshark Tutorail, Quit]__**
+**4.0 Once the network interface was also given, Andromeda will now run with the given parameters. While Andromeda is running, you will see a small GUI window pop up with 4 buttons: __[Clear IP-list, Open Wireshark, Wireshark Tutorail, Quit]__. These buttons have the following definition.**
 
 ![First run main](https://github.com/ethicalpunk/andromeda/blob/main/docs/first_run_main.png "First run main")
+    
+    Clear IP-list: Clears the current output of IP addresses and starts over again.
+    Open Wireshark: Open wireshark with the current set parameters. This allows you to futher inspect packets.
+    Wireshark Tutorial: Redirects you to a link showing you a detailed instructions on how to use Wireshark.
+    Quit: This button drops all threads and closes the program.
