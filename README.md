@@ -13,4 +13,4 @@ Documentation
 
 **1.1. If the binary of Wireshark's location was invalid or does not exist, Andromeda will let you know something is wrong.**
 
-![Before running error](https://github.com/ethicalpunk/andromeda/blob/main/docs/before_start_error.png, "Before running error")
+![Before running error](https://github.com/ethicalpunk/andromeda/blob/main/docs/before_start_error.png "Before running error")
