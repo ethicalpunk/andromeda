@@ -16,6 +16,10 @@ Documentation
 ![Before running error](https://github.com/ethicalpunk/andromeda/blob/main/docs/before_start_error.png "Before running error")
 
 
-**2.0 Once the wireshark variable has been set correctly, you will be prompted to input an IP address. This IP must be the IP you wish to initiate a tap on**
+**2.0 Once the wireshark variable has been set correctly, you will be prompted to input an IP address. This IP must be the IP you wish to initiate a tap on.**
 
 ![First run](https://github.com/ethicalpunk/andromeda/blob/main/docs/first_start.png "First run")
+
+**3.0 Once the IP you wish to initiate a tap on was given, Andromeda will now ask for a network interface.**
+
+![First run interface](https://github.com/ethicalpunk/andromeda/blob/main/docs/first_run_interface.png "First run interface")
