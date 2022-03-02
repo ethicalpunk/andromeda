@@ -23,3 +23,7 @@ Documentation
 **3.0 Once the IP you wish to initiate a tap on was given, Andromeda will now ask for a network interface.**
 
 ![First run interface](https://github.com/ethicalpunk/andromeda/blob/main/docs/first_run_interface.png "First run interface")
+
+**4.0 Once the network interface was also given, Andromeda will now run with the given parameters. While Andromeda is running, you will see a small GUI window pop up with the options: __[Clear IP-list, Open Wireshark, Wireshark Tutorail, Quit]__**
+
+![First run main](https://github.com/ethicalpunk/andromeda/blob/main/docs/first_run_main.png "First run main")
