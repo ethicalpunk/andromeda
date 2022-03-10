@@ -142,8 +142,6 @@ class SYSTEM:
                 interface = input(f"\n{Fore.LIGHTYELLOW_EX}Input interface{Fore.LIGHTWHITE_EX}: ")
                 save = open("ipdatabase/.interface.txt", "w+"); save.write(interface); save.close()
 
-
-            print(interface)
             return interface
         
         except KeyboardInterrupt:
