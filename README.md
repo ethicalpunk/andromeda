@@ -30,7 +30,7 @@ Documentation
     
     [Clear IP-list]: Clears the current output of IP addresses and starts over again.
     
-    [Open Wireshark]: Open wireshark with the current set parameters. This allows you to futher inspect packets.
+    [Open Wireshark]: Opens wireshark with the currently set parameters. This allows you to futher inspect packets.
     
     [Wireshark Tutorial]: Redirects you to a link showing you a detailed instructions on how to use Wireshark.
     
