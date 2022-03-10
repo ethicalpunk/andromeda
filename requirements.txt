@@ -1,0 +1,7 @@
+scapy
+ipaddress
+maxminddb
+colorama
+pyfiglet
+tkinter
+webbrowser
