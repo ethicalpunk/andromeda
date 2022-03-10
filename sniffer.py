@@ -152,6 +152,7 @@ class SYSTEM:
 
 class IP_FUNCTIONS:
     def previousIP():
+        print(banner())
         try:
             save = open("ipdatabase/.ip.txt", "r").read().strip()
             host = ipaddress.ip_address(save)
