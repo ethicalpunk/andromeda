@@ -272,7 +272,6 @@ try:
     host = IP_FUNCTIONS.previousIP()
     interface = SYSTEM.getinterface()
     
-    print(SYSTEM.systemclear())
     windowtext.runningwindowtext = "Sniffing on {} with IP: {}".format(interface,host)
 
     thread1 = Thread(target = IP_FUNCTIONS.displayips); thread1.start()
