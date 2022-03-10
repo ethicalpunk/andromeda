@@ -24,7 +24,7 @@ Documentation
 
 ![First run interface](https://github.com/ethicalpunk/andromeda/blob/main/docs/first_run_interface.png "First run interface")
 
-**4.0 Once the network interface was also given, Andromeda will now run with the given parameters. While Andromeda is running, you will see a small GUI window pop up with 4 buttons: __[Clear IP-list, Open Wireshark, Wireshark Tutorail, Quit]__. These buttons have the following definition.**
+**4.0 Once the network interface was also given, Andromeda will now run with the given parameters. While Andromeda is running, you will see a small GUI window pop up with 4 buttons: __[Clear IP-list, Open Wireshark, Wireshark Tutorial, Quit]__. These buttons have the following definition.**
 
 ![First run main](https://github.com/ethicalpunk/andromeda/blob/main/docs/first_run_main.png "First run main")
     
