@@ -19,7 +19,7 @@ def banner():
 class variables:
     iplist = {}
     runwire = False
-    wiresharkfolder = "" # Set this variable to your wireshark installation. Eg: C:/Program Files/Wireshark/Wireshark.exe
+    wiresharkfolder = "C:\Program Files\Wireshark\Wireshark.exe" # Set this variable to your wireshark installation. Eg: C:/Program Files/Wireshark/Wireshark.exe
 
 class windowtext:
     clearterminaltext = "Clear IP-list"
@@ -265,13 +265,15 @@ def GUI():
     
     os._exit(0)
 
-host = IP_FUNCTIONS.previousIP()
-interface = SYSTEM.getinterface()
-
 try:
-    windowtext.runningwindowtext = "Sniffing on {} with IP: {}".format(interface,host)
     os.system(SYSTEM.systemclear())
     
+    host = IP_FUNCTIONS.previousIP()
+    interface = SYSTEM.getinterface()
+    
+    print(SYSTEM.systemclear())
+    windowtext.runningwindowtext = "Sniffing on {} with IP: {}".format(interface,host)
+
     thread1 = Thread(target = IP_FUNCTIONS.displayips); thread1.start()
     thread2 = Thread(target = GUI); thread2.start()
 
