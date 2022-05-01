@@ -19,7 +19,7 @@ def banner():
 class variables:
     iplist = {}
     runwire = False
-    wiresharkfolder = "C:\Program Files\Wireshark\Wireshark.exe" # Set this variable to your wireshark installation. Eg: C:/Program Files/Wireshark/Wireshark.exe
+    wiresharkfolder = "/usr/bin/wireshark" # Set this variable to your wireshark installation. Eg: C:/Program Files/Wireshark/Wireshark.exe
 
 class windowtext:
     clearterminaltext = "Clear IP-list"
@@ -203,13 +203,13 @@ class IP_FUNCTIONS:
                     sortedlist += f"{Fore.LIGHTRED_EX}{value[0]} {Fore.LIGHTYELLOW_EX}-> {Fore.LIGHTWHITE_EX}{value[1]} {PROCESS_GEOIP.getinfo(value[0])}\n"
 
             sortedlist = ([x for x in sortedlist.split("\n") if len(x)>1])
-            
-            count = len(sortedlist); staticcount = count
-        
+
+            count = 1; staticcount = len(sortedlist)
+
             for row in sortedlist:
                 if len(row) > 1:
                     print(f"[{Fore.LIGHTGREEN_EX}{count}-{staticcount}{Fore.LIGHTWHITE_EX}] {row}")
-                    count-=1
+                    count+=1
 
             print(); time.sleep(1.5); os.system(SYSTEM.systemclear())
 
