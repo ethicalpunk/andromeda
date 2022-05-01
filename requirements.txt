@@ -5,3 +5,4 @@ colorama
 pyfiglet
 tkinter
 webbrowser
+urllib.request
