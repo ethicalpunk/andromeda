@@ -11,6 +11,18 @@ from tkinter import ttk
 import subprocess
 import webbrowser
 import os
+import mysql.connector
+import datetime
+import urllib.request
+
+try:
+    endpoint = 'https://wtfismyip.com/text'
+    data = urllib.request.urlopen(endpoint).read()
+    EXT_IP = data.decode().strip()
+except:
+    endpoint = 'https://api.my-ip.io/ip'
+    data = urllib.request.urlopen(endpoint).read()
+    EXT_IP = data.decode().strip()
 
 def banner():
     f = Figlet()
@@ -19,7 +31,12 @@ def banner():
 class variables:
     iplist = {}
     runwire = False
-    wiresharkfolder = "/usr/bin/wireshark" # Set this variable to your wireshark installation. Eg: C:/Program Files/Wireshark/Wireshark.exe
+    wiresharkfolder = "C:/Program Files/Wireshark/Wireshark.exe" # Set this variable to your wireshark installation. Eg: C:/Program Files/Wireshark/Wireshark.exe
+    DBhost = '62.195.126.36'
+    DBport = 34890
+    DBuser = 'ANDROMEDA_CLIENT_1'
+    DBpassword = 'D7KivekOMAYOjOwi51jumesoDoJIxA'
+    DBdatabase = 'ANDROMEDA_DATA'
 
 class windowtext:
     clearterminaltext = "Clear IP-list"
@@ -88,6 +105,40 @@ class PROCESS_GEOIP:
         return info
 
 class SYSTEM:
+    def connectdb():
+        global cursor
+        global db
+        db = mysql.connector.connect(
+            host = variables.DBhost,
+            port = variables.DBport,
+            user = variables.DBuser,
+            password = variables.DBpassword,
+            database = variables.DBdatabase
+        )
+        cursor = db.cursor()
+
+    def writedb(KEY):
+        global db
+        global cursor
+        for i in range(0,2):
+            try:
+                cursor.execute(f"SELECT HOST FROM IPS WHERE HOST = '{KEY}'")
+                if len(cursor.fetchall()) == 0:
+                    cursor.execute(f"INSERT INTO `IPS` (`DATE`, `HOST`, `FREQUENCY`, `SOURCE`) VALUES ('{SYSTEM.date()}', '{KEY}', 1, '{EXT_IP}');")
+                    db.commit()
+                else:
+                    cursor.execute(f"UPDATE IPS SET FREQUENCY = FREQUENCY + 1, DATE = '{SYSTEM.date()}' WHERE HOST = '{KEY}'")
+                    db.commit()
+                
+                break
+            except:
+                SYSTEM.connectdb()
+
+    def date():
+        now = datetime.datetime.now()
+        dt_string = now.strftime("%Y-%m-%d %H:%M:%S")
+        return dt_string
+
     def systemclear():
         if platform == "linux" or platform == "linux2":
             return "clear"
@@ -133,6 +184,9 @@ class SYSTEM:
 
                 x = input(f"{Fore.WHITE}A previously used network interface was detected {Fore.LIGHTRED_EX}({Fore.LIGHTGREEN_EX}{save}{Fore.LIGHTRED_EX}){Fore.WHITE}, would you like to use this interface again? {Fore.LIGHTYELLOW_EX}[{Fore.LIGHTGREEN_EX}yes{Fore.LIGHTRED_EX}/{Fore.LIGHTGREEN_EX}no{Fore.LIGHTYELLOW_EX}]{Fore.WHITE}: ")        
                 
+                if len(x) == 0:
+                    x = "yes"
+
                 if x.lower() == "yes" or x.lower() == "y": interface = save
                 elif x.lower() == "no" or x.lower() == "n":
                     save = open("ipdatabase/.interface.txt", "w+"); save.close(); raise ValueError
@@ -158,6 +212,9 @@ class IP_FUNCTIONS:
             while True:
                 x = input(f"{Fore.WHITE}A previously used IP Address was detected {Fore.LIGHTRED_EX}({Fore.LIGHTGREEN_EX}{host}{Fore.LIGHTRED_EX}){Fore.WHITE}, would you like to use this IP again? {Fore.LIGHTYELLOW_EX}[{Fore.LIGHTGREEN_EX}yes{Fore.LIGHTRED_EX}/{Fore.LIGHTGREEN_EX}no{Fore.LIGHTYELLOW_EX}]{Fore.WHITE}: ")
                 
+                if len(x) == 0:
+                    x = "yes"
+
                 if x.lower() == "yes" or x.lower() == "y": break
                 elif x.lower() == "no" or x.lower() == "n":
                     save = open("ipdatabase/.ip.txt", "w+"); save.close()
@@ -196,23 +253,30 @@ class IP_FUNCTIONS:
         while True:
             sort = sorted(variables.iplist.items(), key=lambda x: x[1], reverse=True); sort.reverse()
             sortedlist = ""
+            BLACKLIST = ([x.strip() for x in open("conf/BLACKLIST.config", "r").readlines()])
+            
             for value in sort:
                 if f"{firstoct}.{secondoct}.{thirdoct}." in value[0].strip():
                     pass
                 else:
-                    sortedlist += f"{Fore.LIGHTRED_EX}{value[0]} {Fore.LIGHTYELLOW_EX}-> {Fore.LIGHTWHITE_EX}{value[1]} {PROCESS_GEOIP.getinfo(value[0])}\n"
+                    if value[0].strip() not in BLACKLIST:
+                        sortedlist += f"{Fore.LIGHTRED_EX}{value[0]} {Fore.LIGHTYELLOW_EX}-> {Fore.LIGHTWHITE_EX}{value[1]} {PROCESS_GEOIP.getinfo(value[0])}\n"
+                        SYSTEM.writedb(value[0].strip())
 
             sortedlist = ([x for x in sortedlist.split("\n") if len(x)>1])
 
             count = 1; staticcount = len(sortedlist)
+
+            if staticcount == 0:
+                print(f"{Fore.LIGHTWHITE_EX}[ ⚠️ {Fore.LIGHTYELLOW_EX} No traffic detected yet{Fore.LIGHTWHITE_EX}]")
 
             for row in sortedlist:
                 if len(row) > 1:
                     print(f"[{Fore.LIGHTGREEN_EX}{count}-{staticcount}{Fore.LIGHTWHITE_EX}] {row}")
                     count+=1
 
-            print(); time.sleep(1.5); os.system(SYSTEM.systemclear())
-
+            print(); time.sleep(3.5); os.system(SYSTEM.systemclear())
+            
     def getsniff(packet):
         try:
             source = packet.getlayer(IP).src
