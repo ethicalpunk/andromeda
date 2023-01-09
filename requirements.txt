@@ -8,3 +8,5 @@ webbrowser
 urllib.request
 scapy
 maxminddb
+colorama
+pyfiglet
