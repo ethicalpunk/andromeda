@@ -231,7 +231,6 @@ class IP_FUNCTIONS:
                 else:
                     if value[0].strip() not in BLACKLIST:
                         sortedlist += f"{Fore.LIGHTRED_EX}{value[0]} {Fore.LIGHTYELLOW_EX}-> {Fore.LIGHTWHITE_EX}{value[1]} {PROCESS_GEOIP.getinfo(value[0])}\n"
-                        SYSTEM.writedb(value[0].strip())
 
             sortedlist = ([x for x in sortedlist.split("\n") if len(x)>1])
 
