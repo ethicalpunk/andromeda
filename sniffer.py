@@ -11,7 +11,6 @@ from tkinter import ttk
 import subprocess
 import webbrowser
 import os
-import mysql.connector
 import datetime
 import urllib.request
 
@@ -105,35 +104,6 @@ class PROCESS_GEOIP:
         return info
 
 class SYSTEM:
-    def connectdb():
-        global cursor
-        global db
-        db = mysql.connector.connect(
-            host = variables.DBhost,
-            port = variables.DBport,
-            user = variables.DBuser,
-            password = variables.DBpassword,
-            database = variables.DBdatabase
-        )
-        cursor = db.cursor()
-
-    def writedb(KEY):
-        global db
-        global cursor
-        for i in range(0,2):
-            try:
-                cursor.execute(f"SELECT HOST FROM IPS WHERE HOST = '{KEY}'")
-                if len(cursor.fetchall()) == 0:
-                    cursor.execute(f"INSERT INTO `IPS` (`DATE`, `HOST`, `FREQUENCY`, `SOURCE`) VALUES ('{SYSTEM.date()}', '{KEY}', 1, '{EXT_IP}');")
-                    db.commit()
-                else:
-                    cursor.execute(f"UPDATE IPS SET FREQUENCY = FREQUENCY + 1, DATE = '{SYSTEM.date()}' WHERE HOST = '{KEY}'")
-                    db.commit()
-                
-                break
-            except:
-                SYSTEM.connectdb()
-
     def date():
         now = datetime.datetime.now()
         dt_string = now.strftime("%Y-%m-%d %H:%M:%S")
