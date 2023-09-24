@@ -3,7 +3,7 @@ ipaddress
 maxminddb
 colorama
 pyfiglet
-tkinter
+tk
 webbrowser
 urllib.request
 scapy
