@@ -31,11 +31,7 @@ class variables:
     iplist = {}
     runwire = False
     wiresharkfolder = "C:/Program Files/Wireshark/Wireshark.exe" # Set this variable to your wireshark installation. Eg: C:/Program Files/Wireshark/Wireshark.exe
-    DBhost = '62.195.126.36'
-    DBport = 34890
-    DBuser = 'ANDROMEDA_CLIENT_1'
-    DBpassword = 'D7KivekOMAYOjOwi51jumesoDoJIxA'
-    DBdatabase = 'ANDROMEDA_DATA'
+
 
 class windowtext:
     clearterminaltext = "Clear IP-list"
